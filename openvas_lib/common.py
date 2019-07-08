@@ -541,7 +541,7 @@ class OMP(object):
 		raise NotImplementedError()
 
 	# ----------------------------------------------------------------------
-	def create_task(self, name, target, config=None, comment=""):
+	def create_task(self, name, target, config=None, schedule=None, comment=""):
 		"""
 		Creates a task in OpenVAS.
 
@@ -553,6 +553,9 @@ class OMP(object):
 
 		:param config: config (profile) name
 		:type config: str
+
+		:param schedule: schedule ID to use.
+		:type schedule: str
 
 		:param comment: comment to add to task
 		:type comment: str
