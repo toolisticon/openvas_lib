@@ -722,6 +722,33 @@ class VulnscanManager(object):
 		return self.__target_id
 
 	# ----------------------------------------------------------------------
+	def create_task(self, name, target, config=None, schedule=None, comment=""):
+		"""
+		Creates a task in OpenVAS.
+
+		:param name: name to the task
+		:type name: str
+
+		:param target: target to scan
+		:type target: str
+
+		:param config: config (profile) name
+		:type config: str
+
+		:param schedule: schedule ID to use.
+		:type schedule: str
+
+		:param comment: comment to add to task
+		:type comment: str
+
+		:return: the ID of the task created.
+		:rtype: str
+
+		:raises: ClientError, ServerError
+		"""
+		return self.__manager.create_task(name, target, config, schedule, comment)
+
+	# ----------------------------------------------------------------------
 	def create_user(self, name, password, role="user"):
 		"""
 		Creates a user in OpenVAS.
@@ -1118,6 +1145,14 @@ class VulnscanManager(object):
 		:rtype: {scan_name: ID}
 		"""
 		return self.__manager.get_tasks_ids_by_status("Done")
+
+	@property
+	def get_protocol_version(self):
+		"""
+		:return: The used OMP protocol version
+		:rtype: str
+		"""
+		return self.__manager.remote_server_version
 
 	# ----------------------------------------------------------------------
 	@set_interval(10.0)
